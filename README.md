@@ -1,6 +1,6 @@
 # cocos-es6-browserify
 
-A simple Cocos2d-HTML5 hello-world app written in ES6 (compiled using [Babel](https://babeljs.io/)) with dependency management using [Browserify](http://browserify.org/).
+A simple [Cocos2d-HTML5](http://www.cocos2d-x.org) hello-world app written in ES6 (compiled using [Babel](https://babeljs.io/)) with dependency management using [Browserify](http://browserify.org/).
 
 ## Running the code
 First, download and setup [cocos2d](http://www.cocos2d-x.org/download)
