@@ -3,6 +3,7 @@
 A simple Cocos2d-HTML5 hello-world app written in ES6 (compiled using [Babel](https://babeljs.io/)) with dependency management using [Browserify](http://browserify.org/).
 
 ## Running the code
+First, download and setup [cocos2d](http://www.cocos2d-x.org/download)
 ```bash
 git clone https://github.com/FullR/cocos-es6-browserify.git
 npm run setup # installs dependencies and creates cocos project
