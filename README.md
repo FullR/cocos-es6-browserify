@@ -4,8 +4,21 @@ A simple [Cocos2d-HTML5](http://www.cocos2d-x.org) hello-world app written in ES
 
 ## Running the code
 First, download and setup [cocos2d](http://www.cocos2d-x.org/download)
+
+Then clone and setup the repo:
 ```bash
 git clone https://github.com/FullR/cocos-es6-browserify.git
-npm run setup # installs dependencies and creates cocos project
-gulp # Compiles all necessary resources into cocos-app directory and runs cocos app (using web platform)
+npm install # installs dependencies and creates cocos project
+```
+
+Then start developing
+```bash
+gulp # Start cocos, build, watch, rebuild
+```
+
+Other gulp tasks:
+```
+build - Compile/copy ES6 source files, resources, and cocos configuration files into the cocos project directory
+start - Start the cocos project as-is without rebuilding
+resources - Copy files from your res directory into the cocos project
 ```

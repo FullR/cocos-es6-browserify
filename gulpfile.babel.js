@@ -1,15 +1,16 @@
-import {extend} from "lodash";
+import {createWriteStream} from "fs";
+import {spawn} from "child_process";
+import gulp from "gulp";
 import browserify from "browserify";
 import browserifyInc from "browserify-incremental";
 import babelify from "babelify";
-import fs from "fs";
-import gulp from "gulp";
 import rename from "gulp-rename";
-import {spawn} from "child_process";
+import runSequence from "run-sequence";
+const debug = process.env.NODE_ENV === "development";
 let cocosWebProcess = null;
 
 gulp.task("babel", () => {
-  const b = browserify("./lib/app.js", extend({
+  const b = browserify("./lib/app.js", Object.assign({
     debug: true,
     paths: ["./node_modules", "./lib"]
   }, browserifyInc.args));
@@ -28,7 +29,7 @@ gulp.task("babel", () => {
 
   return b
     .bundle()
-    .pipe(fs.createWriteStream("./cocos-app/src/app.js"));
+    .pipe(createWriteStream("./cocos-app/src/app.js"));
 });
 
 gulp.task("cocos-files", () => {
@@ -46,7 +47,7 @@ gulp.task("watch", () => {
   gulp.watch("./lib/cocos/**/*", ["cocos-files"]);
 });
 
-gulp.task("start", ["build"], () => {
+gulp.task("start", () => {
   if(cocosWebProcess) {
     cocosWebProcess.kill();
   }
@@ -54,4 +55,6 @@ gulp.task("start", ["build"], () => {
 });
 
 gulp.task("build", ["babel", "resources", "cocos-files"]);
-gulp.task("default", ["start"]);
+gulp.task("default", (callback) => {
+  runSequence("watch", "build", "start", callback);
+});
